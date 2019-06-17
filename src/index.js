@@ -1,47 +1,36 @@
 import * as d3 from 'd3';
+import {coordScaling} from './data-mapping.js';
+import graph from './graph.js';
+
+import './styles.css';
 
 const vis = d3.select('#graph').append('svg');
 
-vis.attr('width', 900).attr('height', 400);
-vis.text('The Graph').select('#graph');
+/**
+ * Our viewbox model is in min/max range of 0 to 1000. All data is mapped to
+ * this limits in order to ensure a scalable graph.
+ **/
+vis.attr('viewBox', '0 0 1000 1000');
 
-const nodes = [{x: 30, y: 50}, {x: 50, y: 80}, {x: 90, y: 120}];
+const nodes = coordScaling(
+  [{lon: 12, lat: 12}, {lon: 4, lat: 2}, {lon: 36, lat: 8}],
+  {min: 0, max: 1000},
+);
 
-vis
-  .selectAll('circle .nodes')
-  .data(nodes)
-  .enter()
-  .append('svg:circle')
-  .attr('class', 'nodes')
-  .attr('cx', function(d) {
-    return d.x;
-  })
-  .attr('cy', function(d) {
-    return d.y;
-  })
-  .attr('r', '10px')
-  .attr('fill', 'gray');
+graph(vis, nodes);
 
-const links = [
-  {source: nodes[0], target: nodes[1]},
-  {source: nodes[2], target: nodes[1]},
-];
+const newNodes = coordScaling(
+  [
+    {lat: 47.07, lon: 15.42}, // Graz
+    {lat: 48.21, lon: 16.36}, // Vienna
+    {lat: 48.86, lon: 2.43}, // Paris
+    {lat: 51.5, lon: -0.11}, // London
+  ],
+  {min: 0, max: 1000},
+);
+console.debug('scaled coordinates', newNodes);
 
-vis
-  .selectAll('.line')
-  .data(links)
-  .enter()
-  .append('line')
-  .attr('x1', function(d) {
-    return d.source.x;
-  })
-  .attr('y1', function(d) {
-    return d.source.y;
-  })
-  .attr('x2', function(d) {
-    return d.target.x;
-  })
-  .attr('y2', function(d) {
-    return d.target.y;
-  })
-  .style('stroke', 'red');
+setTimeout(() => {
+  console.debug('update nodes');
+  graph(vis, newNodes);
+}, 1500);
