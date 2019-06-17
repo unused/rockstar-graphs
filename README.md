@@ -13,5 +13,6 @@ A demonstrational example of the project can be found at
 ```sh
 $ npm install # install dependencies
 $ npm run start # start development webserver on http://localhost:8080
-$ make # build and deploy to GitHub pages
+$ make # build
+$ make deploy # deploy to GitHub pages
 ```
