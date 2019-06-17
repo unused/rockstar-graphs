@@ -1,0 +1,7 @@
+
+development:
+  clients:
+    default:
+      database: rockstar_graphs
+      hosts:
+        - localhost:27017
