@@ -17,23 +17,30 @@
  *            S
  *           -90
  *
+ * TODO: Current implementation does not preserve the relative distance when
+ * scaling. To keep this information yet find a proper presentation one has to
+ * find the large distance at either longitude or latitude values, then build a
+ * corresponding linear scale function yet keeping sure the limits are in
+ * bound.
  **/
 const coordScaling = (coords, {min, max}) => {
   const mappedCoords = coords.map(({lon, lat}) => {
     return {lon: 180 + lon, lat: (lat - 90) * -2};
   });
-  const values = mappedCoords.reduce((a, {lon, lat}) => a.concat(lon, lat), []);
+  const longitudes = mappedCoords.reduce((list, {lon}) => list.concat(lon), []);
+  const latitudes = mappedCoords.reduce((list, {lat}) => list.concat(lat), []);
 
-  console.debug('mapped coordinates', mappedCoords);
-  console.debug('limits', [Math.min(...values), Math.max(...values)]);
-
-  const scaleCoord = d3
+  const scaleLon = d3
     .scaleLinear()
-    .domain([Math.min(...values), Math.max(...values)])
+    .domain([Math.min(...longitudes), Math.max(...longitudes)])
+    .range([min + max * 0.1, max - max * 0.1]);
+  const scaleLat = d3
+    .scaleLinear()
+    .domain([Math.min(...latitudes), Math.max(...latitudes)])
     .range([min + max * 0.1, max - max * 0.1]);
 
   return mappedCoords.map(({lon, lat}) => {
-    return {x: scaleCoord(lon), y: scaleCoord(lat)};
+    return {x: scaleLon(lon), y: scaleLat(lat)};
   });
 };
 
