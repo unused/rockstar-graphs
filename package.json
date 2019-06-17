@@ -1,0 +1,36 @@
+{
+  "name": "rockstar-graphs",
+  "version": "1.0.0",
+  "description": "RockStarGraphs, a spatial-temporal data visualization to evaluate fame.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "webpack-dev-server -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/unused/rockstar-graphs.git"
+  },
+  "keywords": [
+    "graph",
+    "visualization",
+    "d3js",
+    "time-series"
+  ],
+  "authors": [
+    "Christoph Lipautz",
+    "Christian Ortner"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/unused/rockstar-graphs/issues"
+  },
+  "homepage": "https://github.com/unused/rockstar-graphs#readme",
+  "dependencies": {
+    "d3": "^5.9.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.1"
+  }
+}
