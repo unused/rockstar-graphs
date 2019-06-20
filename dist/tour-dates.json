@@ -1,0 +1,121 @@
+{
+  "lambofgod": [
+    {
+      "name": "Covelli Centre, Youngstown, OH",
+      "timestamp": 1558368000,
+      "coords": { "lat": 41.09, "lon": -80.65 }
+    },
+    {
+      "name": "Canadian Tire Centre, Ottawa, Canada",
+      "timestamp": 1558540800,
+      "coords": { "lat": 45.42, "lon": -75.69 }
+    },
+    {
+      "name": "BB&T Pavilion, Philadelphia, PA",
+      "timestamp": 1558713600,
+      "coords": { "lat": 39.95, "lon": -75.16 }
+    },
+    {
+      "name": "Xfinity Center Amphitheatre, Boston, MA",
+      "timestamp": 1558800000,
+      "coords": { "lat": 42.36, "lon": -71.06 }
+    },
+    {
+      "name": "Pannonia Fields II, Nickelsdorf, Austria",
+      "timestamp": 1560463200,
+      "coords": { "lat": 47.94, "lon": 17.06 }
+    },
+    {
+      "name": "Greenfield Festival, Interlaken, Switzerland",
+      "timestamp": 1560549600,
+      "coords": { "lat": 46.68, "lon": 7.86 }
+    },
+    {
+      "name": "Donington Park Circuit, Castle Donington, UK",
+      "timestamp": 1560718800,
+      "coords": { "lat": 52.64, "lon": -2.28 }
+    },
+    {
+      "name": "Poppodium 013, Tilburg, Netherlands",
+      "timestamp": 1560895200,
+      "coords": { "lat": 51.58, "lon": 5.05 }
+    },
+    {
+      "name": "Essigfabrik, Köln, Germany",
+      "timestamp": 1560981600,
+      "coords": { "lat": 50.93, "lon": 6.96 }
+    },
+    {
+      "name": "Copenhell, Kobenhavn, Denmark",
+      "timestamp": 1561068000,
+      "coords": { "lat": 55.67, "lon": 12.57 }
+    }
+  ],
+  "gloryhammer": [
+    {
+      "name": "Knitting Factory Brooklyn, Brooklyn, NY",
+      "timestamp": 1559664000,
+      "coords": { "lat": 40.67, "lon": -73.94 }
+    },
+    {
+      "name": "L'Astral, Montreal, Canada",
+      "timestamp": 1559750400,
+      "coords": { "lat": 45.50, "lon": -73.56 }
+    },
+    {
+      "name": "Velvet Underground, Toronto, Canada",
+      "timestamp": 1559836800,
+      "coords": { "lat": 43.65, "lon": -79.38 }
+    },
+    {
+      "name": "Reggies Rock Club, Chicago, IL",
+      "timestamp": 1559919600,
+      "coords": { "lat": 41.87, "lon": -87.63 }
+    },
+    {
+      "name": "Riot Room, Kansas City, MO",
+      "timestamp": 1560002400,
+      "coords": { "lat": 39.10, "lon": -94.57 }
+    },
+    {
+      "name": "The Oriental Theater, Denver, CO",
+      "timestamp": 1560088800,
+      "coords": { "lat": 39.74, "lon": -104.99 }
+    },
+    {
+      "name": "El Corazon, Seattle, WA",
+      "timestamp": 1560258000,
+      "coords": { "lat": 47.60, "lon": -122.33 }
+    },
+    {
+      "name": "Hawthorne THeatre, Portland, OR",
+      "timestamp": 1560344400,
+      "coords": { "lat": 45.51, "lon": -122.65 }
+    },
+    {
+      "name": "Oakland Metro Operahouse, Oakland, CA",
+      "timestamp": 1560430800,
+      "coords": { "lat": 37.80, "lon": -122.27 }
+    },
+    {
+      "name": "1720 E 16th St, Los Angeles, CA",
+      "timestamp": 1560517200,
+      "coords": { "lat": 34.05, "lon": -118.24 }
+    },
+    {
+      "name": "Club Red, Mesa, AZ",
+      "timestamp": 1560603600,
+      "coords": { "lat": 33.41, "lon": -111.83 }
+    },
+    {
+      "name": "Gas Monkey Bar N' Grill, Dallas, TX",
+      "timestamp": 1560783600,
+      "coords": { "lat": 32.77, "lon": -96.79 }
+    },
+    {
+      "name": "Come and Take It Live, Austin, TX",
+      "timestamp": 1560870000,
+      "coords": { "lat": 30.26, "lon": -97.74 }
+    }
+  ]
+}
