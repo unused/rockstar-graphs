@@ -3,11 +3,15 @@
  **/
 class RockstarGraph {
   initialize() {
-    this.tourData = {};
+    this._tourData = {};
   }
 
-  setTourData(data) {
-    this.tourData = data;
+  set tourData(data) {
+    this._tourData = data;
+  }
+
+  get tourData() {
+    return this._tourData;
   }
 }
 
