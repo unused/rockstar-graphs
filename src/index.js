@@ -13,28 +13,14 @@ const vis = d3.select('#graph').append('svg');
  **/
 vis.attr('viewBox', '0 0 1000 1000');
 
-const nodes = coordScaling(
-  [{lon: 12, lat: 12}, {lon: 4, lat: 2}, {lon: 36, lat: 8}],
-  {min: 0, max: 1000},
-);
+fetch('tour-dates.json')
+  .then(response => response.json())
+  .then(json => {
+    const coords = json['gloryhammer'].map(event => event.coords);
+    const nodes = coordScaling(coords, {min: 0, max: 1000});
 
-graph(vis, nodes);
-
-const newNodes = coordScaling(
-  [
-    {lat: 47.07, lon: 15.42}, // Graz
-    {lat: 48.21, lon: 16.36}, // Vienna
-    {lat: 48.86, lon: 2.43}, // Paris
-    {lat: 51.5, lon: -0.11}, // London
-  ],
-  {min: 0, max: 1000},
-);
-console.debug('scaled coordinates', newNodes);
-
-setTimeout(() => {
-  console.debug('update nodes');
-  graph(vis, newNodes);
-}, 1500);
+    graph(vis, nodes);
+  });
 
 /**
  * Data Histogram
@@ -48,6 +34,14 @@ histogram.attr('viewBox', '0 0 100 100');
 
 const drawHistogram = data => {
   /* TODO: draw histogram */
+  data = data.sort();
+
+  console.debug(
+    'data goes from',
+    new Date(data[0] * 1000),
+    'to',
+    new Date(data[data.length - 1] * 1000),
+  );
 };
 
-dataFetch('lambofgod', data => drawHistogram(data));
+dataFetch('gloryhammer', data => drawHistogram(data));
