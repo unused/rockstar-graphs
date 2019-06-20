@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 import {coordScaling} from './data-mapping.js';
 import graph from './graph.js';
+import dataFetch from './data-fetch.js';
 
 import './styles.css';
 
@@ -34,3 +35,19 @@ setTimeout(() => {
   console.debug('update nodes');
   graph(vis, newNodes);
 }, 1500);
+
+/**
+ * Data Histogram
+ **/
+const histogram = d3.select('#histogram').append('svg');
+/**
+ * Our viewbox model is in min/max range of 0 to 100. All data is mapped to
+ * this limits in order to ensure a scalable graph.
+ **/
+histogram.attr('viewBox', '0 0 100 100');
+
+const drawHistogram = data => {
+  /* TODO: draw histogram */
+};
+
+dataFetch('lambofgod', data => drawHistogram(data));
