@@ -1,4 +1,5 @@
 const dataFetch = (source, callback) => {
+  console.debug('artist: ', source);
   fetch(`data/${source}.json`)
     .then(response => response.json())
     .then(json => callback(json))
