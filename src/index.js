@@ -2,8 +2,11 @@ import * as d3 from 'd3';
 import {coordScaling} from './data-mapping.js';
 import graph from './graph.js';
 import dataFetch from './data-fetch.js';
+// import RockstarGraph from './rockstar-graph.js';
 
 import './styles.css';
+
+// let graph = new RockstarGraph();
 
 const vis = d3.select('#graph').append('svg');
 
@@ -16,6 +19,9 @@ vis.attr('viewBox', '0 0 1000 1000');
 fetch('tour-dates.json')
   .then(response => response.json())
   .then(json => {
+    // graph.setTourData(json);
+    // prepareArtistSelect();
+
     const coords = json['gloryhammer'].map(event => event.coords);
     const nodes = coordScaling(coords, {min: 0, max: 1000});
 
