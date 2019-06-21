@@ -9,30 +9,30 @@ import './styles.css';
 
 let graph = new RockstarGraph();
 
-const vis = d3.select('#graph').append('svg');
-
 /**
- * Data Histogram
- **/
-const histogram = d3.select('#histogram').append('svg');
-/**
- * Our viewbox model is in min/max range of 0 to 100. All data is mapped to
- * this limits in order to ensure a scalable graph.
- **/
-histogram.attr('viewBox', '0 0 100 100');
-
-/**
+ * SVG Graph
+ *
  * Our viewbox model is in min/max range of 0 to 1000. All data is mapped to
  * this limits in order to ensure a scalable graph.
  **/
+const vis = d3.select('#graph').append('svg');
 vis.attr('viewBox', '0 0 1000 1000');
+
+/**
+ * Data Histogram
+ *
+ * Our viewbox model is in min/max range of 0 to 100. All data is mapped to
+ * this limits in order to ensure a scalable graph.
+ **/
+const histogram = d3.select('#histogram').append('svg');
+histogram.attr('viewBox', '0 0 500 100');
 
 const switchArtist = artist => {
   const coords = graph.tourData[artist].map(event => event.coords);
   const nodes = coordScaling(coords, {min: 0, max: 1000});
 
   drawGraph(vis, nodes);
-  dataFetch(artist, data => drawHistogram(histogram, data));
+  dataFetch(artist, data => drawHistogram(histogram, data.sort()));
 };
 
 const prepareArtistSelect = artists => {
@@ -61,4 +61,3 @@ fetch('tour-dates.json')
     prepareArtistSelect(artists);
     switchArtist(artists[0]);
   });
-
