@@ -32,14 +32,19 @@ histogram.attr('viewBox', '0 0 500 100');
 
 const switchArtist = artist => {
   dataFetch(artist, data => {
-  enrichedGraph.initialize(graph.tourData[artist], data);
+    enrichedGraph.initialize(graph.tourData[artist], data);
 
-  const coords = graph.tourData[artist].map(event => event.coords);
-  const nodes = coordScaling(coords, {min: 0, max: 1000});
+    const coords = graph.tourData[artist].map(event => event.coords);
+    const nodes = coordScaling(coords, {min: 0, max: 1000});
 
-  drawGraph(vis, nodes);
-  extendGraph(vis, nodes, enrichedGraph.enrichedNodes, enrichedGraph.enrichedEdges);
-  drawHistogram(histogram, data.sort());
+    drawGraph(vis, nodes);
+    extendGraph(
+      vis,
+      nodes,
+      enrichedGraph.enrichedNodes,
+      enrichedGraph.enrichedEdges,
+    );
+    drawHistogram(histogram, data.sort());
   });
 };
 

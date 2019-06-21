@@ -5,52 +5,53 @@ import {linksBuilder} from './data-mapping.js';
  * Build a graph from given nodes.
  **/
 const extendGraph = (vis, nodes, extNodes, extEdges) => {
-  console.debug(extNodes);
-  console.debug(extEdges);
-  console.debug(nodes);
-  console.debug(linksBuilder(nodes));
+  console.debug('nodes', nodes);
+  console.debug('extNodes', extNodes);
+  console.debug('extEdges', extEdges);
+  console.debug('linksBuilder(nodes)', linksBuilder(nodes));
 
-  var calc_nodes = [];
-
-         vis.selectAll("circle.event").remove();
+  // Clear all event data
+  vis.selectAll('circle.event').remove();
 
   nodes.forEach(function(item, index, array) {
     // Initialize the circle: all located at the center of the svg area
     //   vis.selectAll('circle.events').remove();
-    let node = vis.append("g").selectAll("circle.event")
-        .data(extNodes[index])
-        .enter()
-        .append("circle")
-        .attr('class', 'event')
-        .attr("r", 3)
-        .attr("cx", item.x)
-        .attr("cy", item.y)
-        .style("fill", "#69b3a2")
-        .style("fill-opacity", 0.5)
-        .attr("stroke", "#69a2b2")
-        .style("stroke-width", 0.1);
+    let node = vis
+      .append('g')
+      .selectAll('circle.event')
+      .data(extNodes[index])
+      .enter()
+      .append('circle')
+      .attr('class', 'event')
+      .attr('r', 3)
+      .style('fill-opacity', 0.5);
+    // node.exit().remove();
 
+    // Features of the forces applied to the nodes:
+    let simulation = d3
+      .forceSimulation()
+      .force(
+        'center',
+        d3
+          .forceCenter()
+          .x(item.x)
+          .y(item.y),
+      ) // Attraction to the center of the svg area
+      .force('charge', d3.forceManyBody().strength(0.75)) // Nodes are attracted one each other of value is > 0
+      .force(
+        'collide',
+        d3
+          .forceCollide()
+          .strength(1)
+          .radius(1)
+          .iterations(1),
+      ); // Force that avoids circle overlapping
 
-
-        // node.exit().remove();
-
-// Features of the forces applied to the nodes:
-    let simulation = d3.forceSimulation()
-        .force("center", d3.forceCenter().x(item.x).y(item.y)) // Attraction to the center of the svg area
-        .force("charge", d3.forceManyBody().strength(0.5)) // Nodes are attracted one each other of value is > 0
-        .force("collide", d3.forceCollide().strength(1).radius(1).iterations(1)); // Force that avoids circle overlapping
-
-// Apply these forces to the nodes and update their positions.
-// Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
-    simulation
-        .nodes(extNodes[index])
-        .on("tick", function(d){
-
-            node
-              .attr("cx", function(d){ return d.x; })
-              .attr("cy", function(d){ return d.y; });
-        });
-
+    // Apply these forces to the nodes and update their positions.
+    // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
+    simulation.nodes(extNodes[index]).on('tick', function(d) {
+      node.attr('cx', ({x}) => x).attr('cy', ({y}) => y);
+    });
   });
 
   // const g = vis.selectAll('circle.node').data(nodes);

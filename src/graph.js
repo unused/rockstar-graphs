@@ -11,8 +11,7 @@ const graph = (vis, nodes) => {
     .attr('class', 'node')
     .attr('cx', ({x}) => x)
     .attr('cy', ({y}) => y)
-    .attr('r', '.75rem')
-    .attr('fill', 'lightGray');
+    .attr('r', '.75rem');
   g.exit().remove();
 
   const l = vis.selectAll('line.link').data(linksBuilder(nodes));
@@ -23,8 +22,7 @@ const graph = (vis, nodes) => {
     .attr('x1', ({source}) => source.x)
     .attr('y1', ({source}) => source.y)
     .attr('x2', ({target}) => target.x)
-    .attr('y2', ({target}) => target.y)
-    .style('stroke', 'gray');
+    .attr('y2', ({target}) => target.y);
   l.exit().remove();
 };
 

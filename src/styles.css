@@ -6,11 +6,42 @@ body {
 }
 * { padding: 0; margin: 0; box-sizing: border-box; } /* reset */
 
+/**
+ * Layout
+ **/
 #graph { width: 75vw; height: 75vh; }
 #histogram { height: 15vh; width: 80vw; }
-svg { width: 100%; height: 100%; }
 
+/**
+ * Controls
+ **/
 select {
-  margin: 1.5rem 0; padding: .25rem .5rem; border-radius: .25rem;
+  margin: 1.5rem 0; padding: .25rem .375rem; border-radius: .25rem;
   background: white; text-transform: uppercase;
 }
+
+/**
+ * Graphs
+ **/
+svg { width: 100%; height: 100%; }
+svg .link { stroke-width: .06125rem; stroke-dasharray: 3,9 }
+svg .node { opacity: .5; }
+
+/**
+ * Colorschemes
+ **/
+svg .link { stroke: LightGoldenRodYellow; }
+svg .node { fill: GhostWhite; }
+svg .text { color: white; }
+svg .bars { fill: Cornsilk; }
+svg .event { fill: PaleGoldenRod; }
+body { background: DimGrey; }
+
+/* NOTE: fooling around...
+@media (prefers-color-scheme: light) {
+  svg .link { stroke: DimGrey; }
+  svg .node { fill: DarkSlateGrey; }
+  svg .text { color: SlateGrey; }
+  body { background: GhostWhite; }
+}
+*/

@@ -22,6 +22,7 @@ const drawHistogram = (histogram, data) => {
   // timestamps to locale date strings.
   histogram
     .append('g')
+    .attr('class', 'text')
     .attr('transform', 'translate(20, 80)')
     .call(xAxis);
 
@@ -39,6 +40,7 @@ const drawHistogram = (histogram, data) => {
     .domain([0, d3.max(bins, d => d.length)]);
   histogram
     .append('g')
+    .attr('class', 'text')
     .attr('transform', 'translate(20, 5)')
     .call(d3.axisLeft(y).ticks(3));
 
@@ -47,11 +49,11 @@ const drawHistogram = (histogram, data) => {
   h.enter()
     .append('rect')
     .merge(h)
-    .attr('x', 1)
+    .attr('x', 1) // move to right not to overlap axis
+    .attr('class', 'bars')
     .attr('transform', d => `translate(${x(d.x0) + 20},${y(d.length) + 5})`)
     .attr('width', d => x(d.x1) - x(d.x0))
-    .attr('height', d => height - y(d.length))
-    .style('fill', 'DarkCyan');
+    .attr('height', d => height - y(d.length));
   h.exit().remove();
 };
 
