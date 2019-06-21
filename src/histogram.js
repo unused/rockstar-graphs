@@ -3,7 +3,7 @@ const drawHistogram = (histogram, data) => {
 
   const height = 90;
   const width = 300;
-  const numberBins = 1000;
+  const numberBins = 100;
   
   const x = d3.scaleLinear()
       .domain([d3.min(data), d3.max(data)])
