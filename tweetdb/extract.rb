@@ -20,6 +20,7 @@ SOURCES.each do |source|
 
   File.open("#{source}.json", 'w') do |file|
     file.puts tweets.pluck(:created_at, :text)
-      .map { |ts, msg| { ts: ts.utc.to_i, sentiment: analyzer.sentiment(msg) } }.to_json
+      .map { |ts, msg| { ts: ts.utc.to_i, sentiment: analyzer.score(msg) } }
+      .to_json
   end
 end
