@@ -3,7 +3,7 @@ import handleSliderControl from './slide-controls';
 /**
  * Draws a histogram
  **/
-const drawHistogram = (histogram, data) => {
+const drawHistogram = (histogram, data, control) => {
   const width = 950; // viewbox width is 500, keep some space for y-axis text
   const height = 75; // viewbox height is 100, keep some space for x-axis text
   const numberBins = 100;
@@ -60,9 +60,7 @@ const drawHistogram = (histogram, data) => {
     .attr('height', d => height - y(d.length));
   h.exit().remove();
 
-  handleSliderControl(histogram, h, {margin, width}, ({start, range}) =>
-    console.debug('slider update', {start, range}),
-  );
+  handleSliderControl(histogram, h, {margin, width}, control);
 };
 
 export default drawHistogram;

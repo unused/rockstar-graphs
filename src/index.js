@@ -44,7 +44,13 @@ const switchArtist = artist => {
       enrichedGraph.enrichedNodes,
       enrichedGraph.enrichedEdges,
     );
-    drawHistogram(histogram, data.sort());
+
+    const max = data.length / 100;
+    drawHistogram(histogram, data.sort(), ({start, range}) => {
+      vis.selectAll('circle.event').style('fill-opacity', (_d, i) => {
+        return i >= start * max && i <= (start + range) * max ? 0.5 : 0.125;
+      });
+    });
   });
 };
 
