@@ -65,9 +65,11 @@ const switchArtist = artist => {
 
     const max = data.length / 100;
     drawHistogram(histogram, data.sort(), ({start, range}) => {
-      vis.selectAll('circle.event').style('fill-opacity', (_d, i) => {
-        return i >= start * max && i <= (start + range) * max ? 0.5 : 0.125;
-      });
+      vis
+        .selectAll('circle.eventnodes, circle.eventedges')
+        .style('fill-opacity', (_d, i) => {
+          return i >= start * max && i <= (start + range) * max ? 0.5 : 0.125;
+        });
     });
   });
 };
