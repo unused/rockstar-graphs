@@ -1,4 +1,5 @@
 import * as d3 from 'd3';
+import {BEFORE, AFTER} from './config.js';
 import {coordScaling} from './data-mapping.js';
 import drawGraph from './graph.js';
 import extendNodes from './extend-nodes.js';
@@ -50,9 +51,34 @@ vis.attr('viewBox', '0 0 1000 1000');
 const histogram = d3.select('#histogram').append('svg');
 histogram.attr('viewBox', '0 0 1000 100');
 
+/**
+ * Reduce tweets to match only the timestamp for the given events.
+ **/
+const reduceTweets = (events, data) => {
+  const firstEvent = events[0];
+  const lastEvent = events[events.length - 1];
+  console.debug('BEFORE', BEFORE);
+  // Remove all events that happened before the tour.
+  while (firstEvent.timestamp - BEFORE > data[0].ts) {
+    data.shift();
+  }
+  // Remove all events that happened after the tour.
+  while (lastEvent.timestamp + AFTER < data[data.length - 1].ts) {
+    data.pop();
+  }
+
+  return data;
+};
+
 const switchArtist = artist => {
   dataFetch(artist, data => {
-    const events = graph.tourData[artist];
+    const events = graph.tourData[artist].sort((a, b) =>
+      a.timestamp < b.timestamp ? -1 : 1,
+    );
+    // Sort and reduce tweets
+    data = data.sort((a, b) => (a.ts < b.ts ? -1 : 1));
+    data = reduceTweets(events, data);
+
     printEventDebug(events, data);
     enrichedGraph.initialize(events, data);
 

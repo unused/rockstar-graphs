@@ -3,7 +3,8 @@ import handleSliderControl from './slide-controls';
 /**
  * Draws a histogram
  **/
-const drawHistogram = (histogram, data, control) => {
+const drawHistogram = (histogram, tweets, control) => {
+  const data = tweets.map(d => d.ts);
   const width = 950; // viewbox width is 500, keep some space for y-axis text
   const height = 75; // viewbox height is 100, keep some space for x-axis text
   const numberBins = 100;
