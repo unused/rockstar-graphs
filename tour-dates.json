@@ -1,56 +1,4 @@
 {
-  "lambofgod": [
-    {
-      "name": "Covelli Centre, Youngstown, OH",
-      "timestamp": 1558368000,
-      "coords": { "lat": 41.09, "lon": -80.65 }
-    },
-    {
-      "name": "Canadian Tire Centre, Ottawa, Canada",
-      "timestamp": 1558540800,
-      "coords": { "lat": 45.42, "lon": -75.69 }
-    },
-    {
-      "name": "BB&T Pavilion, Philadelphia, PA",
-      "timestamp": 1558713600,
-      "coords": { "lat": 39.95, "lon": -75.16 }
-    },
-    {
-      "name": "Xfinity Center Amphitheatre, Boston, MA",
-      "timestamp": 1558800000,
-      "coords": { "lat": 42.36, "lon": -71.06 }
-    },
-    {
-      "name": "Pannonia Fields II, Nickelsdorf, Austria",
-      "timestamp": 1560463200,
-      "coords": { "lat": 47.94, "lon": 17.06 }
-    },
-    {
-      "name": "Greenfield Festival, Interlaken, Switzerland",
-      "timestamp": 1560549600,
-      "coords": { "lat": 46.68, "lon": 7.86 }
-    },
-    {
-      "name": "Donington Park Circuit, Castle Donington, UK",
-      "timestamp": 1560718800,
-      "coords": { "lat": 52.64, "lon": -2.28 }
-    },
-    {
-      "name": "Poppodium 013, Tilburg, Netherlands",
-      "timestamp": 1560895200,
-      "coords": { "lat": 51.58, "lon": 5.05 }
-    },
-    {
-      "name": "Essigfabrik, Köln, Germany",
-      "timestamp": 1560981600,
-      "coords": { "lat": 50.93, "lon": 6.96 }
-    },
-    {
-      "name": "Copenhell, Kobenhavn, Denmark",
-      "timestamp": 1561068000,
-      "coords": { "lat": 55.67, "lon": 12.57 }
-    }
-  ],
   "gloryhammer": [
     {
       "name": "Knitting Factory Brooklyn, Brooklyn, NY",
@@ -116,6 +64,58 @@
       "name": "Come and Take It Live, Austin, TX",
       "timestamp": 1560870000,
       "coords": { "lat": 30.26, "lon": -97.74 }
+    }
+  ],
+  "lambofgod": [
+    {
+      "name": "Covelli Centre, Youngstown, OH",
+      "timestamp": 1558368000,
+      "coords": { "lat": 41.09, "lon": -80.65 }
+    },
+    {
+      "name": "Canadian Tire Centre, Ottawa, Canada",
+      "timestamp": 1558540800,
+      "coords": { "lat": 45.42, "lon": -75.69 }
+    },
+    {
+      "name": "BB&T Pavilion, Philadelphia, PA",
+      "timestamp": 1558713600,
+      "coords": { "lat": 39.95, "lon": -75.16 }
+    },
+    {
+      "name": "Xfinity Center Amphitheatre, Boston, MA",
+      "timestamp": 1558800000,
+      "coords": { "lat": 42.36, "lon": -71.06 }
+    },
+    {
+      "name": "Pannonia Fields II, Nickelsdorf, Austria",
+      "timestamp": 1560463200,
+      "coords": { "lat": 47.94, "lon": 17.06 }
+    },
+    {
+      "name": "Greenfield Festival, Interlaken, Switzerland",
+      "timestamp": 1560549600,
+      "coords": { "lat": 46.68, "lon": 7.86 }
+    },
+    {
+      "name": "Donington Park Circuit, Castle Donington, UK",
+      "timestamp": 1560718800,
+      "coords": { "lat": 52.64, "lon": -2.28 }
+    },
+    {
+      "name": "Poppodium 013, Tilburg, Netherlands",
+      "timestamp": 1560895200,
+      "coords": { "lat": 51.58, "lon": 5.05 }
+    },
+    {
+      "name": "Essigfabrik, Köln, Germany",
+      "timestamp": 1560981600,
+      "coords": { "lat": 50.93, "lon": 6.96 }
+    },
+    {
+      "name": "Copenhell, Kobenhavn, Denmark",
+      "timestamp": 1561068000,
+      "coords": { "lat": 55.67, "lon": 12.57 }
     }
   ]
 }
