@@ -1,13 +1,13 @@
 import * as d3 from 'd3';
-import {FILL_OPACITY, BEFORE, AFTER} from './config.js';
-import {coordScaling} from './data-mapping.js';
-import drawGraph from './graph.js';
-import extendNodes from './extend-nodes.js';
-import extendEdges from './extend-edges.js';
-import drawHistogram from './histogram.js';
+import {FILL_OPACITY, BEFORE, AFTER} from './config';
+import {coordScaling} from './data-mapping';
+import drawGraph from './graph';
+import extendNodes from './extend-nodes';
+import extendEdges from './extend-edges';
+import drawHistogram from './histogram';
 import EnrichedGraph from './enriched-graph';
-import dataFetch from './data-fetch.js';
-import RockstarGraph from './rockstar-graph.js';
+import dataFetch from './data-fetch';
+import RockstarGraph from './rockstar-graph';
 
 import './styles.css';
 
@@ -85,19 +85,19 @@ const switchArtist = artist => {
     const coords = graph.tourData[artist];
     const nodes = coordScaling(coords, {min: 0, max: 1000});
 
-    drawGraph(vis, nodes);
     extendNodes(vis, nodes, enrichedGraph.enrichedNodes);
     extendEdges(vis, nodes, enrichedGraph.enrichedEdges);
+    drawGraph(vis, nodes);
 
-    const max = data.length / 100;
+    const controlsScale = d3
+      .scaleLinear()
+      .domain([data[0].ts, data[data.length - 1].ts])
+      .range([0, 100]);
     drawHistogram(histogram, data.sort(), ({start, range}) => {
-      vis
-        .selectAll('circle.eventnodes, circle.eventedges')
-        .style('fill-opacity', (_d, i) => {
-          return i >= start * max && i <= (start + range) * max
-            ? FILL_OPACITY
-            : 0.125;
-        });
+      vis.selectAll('circle.eventnodes').style('fill-opacity', ({tweet}) => {
+        const score = controlsScale(tweet.ts);
+        return score >= start && score <= start + range ? FILL_OPACITY : 0.125;
+      });
     });
   });
 };

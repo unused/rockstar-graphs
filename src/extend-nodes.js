@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import {mood_scale} from './config';
+import {FILL_OPACITY, mood_scale} from './config';
 
 /**
  * Build a graph from given nodes.
@@ -19,14 +19,11 @@ const extendNodes = (vis, nodes, extNodes) => {
       .enter()
       .append('circle')
       .attr('class', 'eventnodes')
-      .attr('r', 3)
+      .attr('r', 8)
       .attr('cx', item.x)
       .attr('cy', item.y)
-      .style('fill', ({tweet: {sentiment}}) => {
-        console.debug(mood_scale(sentiment));
-        return mood_scale(sentiment);
-      })
-      .style('fill-opacity', 0.75);
+      .style('fill', ({tweet: {sentiment}}) => mood_scale(sentiment))
+      .style('fill-opacity', FILL_OPACITY);
 
     // Features of the forces applied to the nodes:
     let simulation = d3
@@ -38,7 +35,7 @@ const extendNodes = (vis, nodes, extNodes) => {
           .x(item.x)
           .y(item.y),
       ) // Attraction to the center of the svg area
-      .force('charge', d3.forceManyBody().strength(0.5)) // Nodes are attracted one each other of value is > 0
+      .force('charge', d3.forceManyBody().strength(0.65)) // Nodes are attracted one each other of value is > 0
       .force(
         'collide',
         d3

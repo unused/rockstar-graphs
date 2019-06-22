@@ -9,4 +9,4 @@ const mood_scale = d3
   .domain([-1.0, 0.0, 1.0])
   .range(['IndianRed', 'GoldenRod', 'ForestGreen']);
 
-export {BEFORE, AFTER, mood_scale};
+export {FILL_OPACITY, BEFORE, AFTER, mood_scale};

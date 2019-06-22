@@ -1,4 +1,4 @@
-import {linksBuilder} from './data-mapping.js';
+import {linksBuilder} from './data-mapping';
 
 /**
  * Build a graph from given nodes.

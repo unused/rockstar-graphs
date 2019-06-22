@@ -1,5 +1,5 @@
 /**
- *
+ * RockstarGraph data collection.
  **/
 class RockstarGraph {
   initialize() {

@@ -1,4 +1,4 @@
-import {BEFORE, AFTER} from './config.js';
+import {BEFORE, AFTER} from './config';
 
 /**
  * Enriched Graph...

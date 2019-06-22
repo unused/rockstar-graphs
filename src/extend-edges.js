@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
-import {linksBuilder} from './data-mapping.js';
+import {FILL_OPACITY, mood_scale} from './config';
+import {linksBuilder} from './data-mapping';
 
 /**
  * Build a graph from given nodes.
@@ -20,7 +21,8 @@ const extendEdges = (vis, nodes, extEdges) => {
       ])
       .range([item.source.x, item.target.x]);
 
-    extEdges[index].forEach(function({tweet: {ts}}, eventIndex, eventArray) {
+    extEdges[index].forEach(function({tweet}, eventIndex, eventArray) {
+      const {ts} = tweet;
       let x = scaleX(ts);
       let y =
         item.source.y +
@@ -39,10 +41,8 @@ const extendEdges = (vis, nodes, extEdges) => {
         .attr('r', 3)
         .attr('cx', x)
         .attr('cy', y)
-        .style('fill', '#69b3a2')
-        .style('fill-opacity', 0.2)
-        .attr('stroke', '#69a2b2')
-        .style('stroke-width', 0.1);
+        .style('fill', 'GoldenRod') // mood_scale(ts))
+        .style('fill-opacity', 0.125);
     });
   });
 };
