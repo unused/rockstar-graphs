@@ -6,6 +6,10 @@
 # Usage: ruby extract.rb
 
 require_relative './application.rb'
+require 'sentimental'
+
+analyzer = Sentimental.new
+analyzer.load_defaults
 
 puts "#{Tweet.count} Tweets found in Database"
 
@@ -15,6 +19,7 @@ SOURCES.each do |source|
   puts "#{tweets.count} Tweets for #{source} found"
 
   File.open("#{source}.json", 'w') do |file|
-    file.puts tweets.pluck(:created_at).map { |ts| ts.utc.to_i }.to_json
+    file.puts tweets.pluck(:created_at, :text)
+      .map { |ts, msg| { ts: ts.utc.to_i, sentiment: analyzer.sentiment(msg) } }.to_json
   end
 end

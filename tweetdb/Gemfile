@@ -6,3 +6,4 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 gem 'bson', '~> 4.5.0'
 gem 'mongoid', '~> 7.0.3'
+gem 'sentimental', '~> 1.5.0'
