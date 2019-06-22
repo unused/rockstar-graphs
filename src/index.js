@@ -1,7 +1,8 @@
 import * as d3 from 'd3';
 import {coordScaling} from './data-mapping.js';
 import drawGraph from './graph.js';
-import extendGraph from './extend-graph.js';
+import extendNodes from './extend-nodes.js';
+import extendEdges from './extend-edges.js';
 import drawHistogram from './histogram.js';
 import EnrichedGraph from './enriched-graph';
 import dataFetch from './data-fetch.js';
@@ -38,7 +39,8 @@ const switchArtist = artist => {
   const nodes = coordScaling(coords, {min: 0, max: 1000});
 
   drawGraph(vis, nodes);
-  extendGraph(vis, nodes, enrichedGraph.enrichedNodes, enrichedGraph.enrichedEdges);
+  extendNodes(vis, nodes, enrichedGraph.enrichedNodes);
+  extendEdges(vis, nodes, enrichedGraph.enrichedEdges);
   drawHistogram(histogram, data);
   });
 };
