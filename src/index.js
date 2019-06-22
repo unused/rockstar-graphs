@@ -17,8 +17,8 @@ const printEventDebug = (events, data) => {
   const formatTs = ts => new Date(ts * 1000).toLocaleDateString();
   const minNodes = d3.min(events, d => d.timestamp);
   const maxNodes = d3.max(events, d => d.timestamp);
-  const minData = d3.min(data);
-  const maxData = d3.max(data);
+  const minData = d3.min(data, d => d.ts);
+  const maxData = d3.max(data, d => d.ts);
 
   console.debug(
     '[Event Limits] Nodes for Concert data range from',
@@ -56,7 +56,7 @@ const switchArtist = artist => {
     printEventDebug(events, data);
     enrichedGraph.initialize(events, data);
 
-    const coords = graph.tourData[artist].map(event => event.coords);
+    const coords = graph.tourData[artist];
     const nodes = coordScaling(coords, {min: 0, max: 1000});
 
     drawGraph(vis, nodes);

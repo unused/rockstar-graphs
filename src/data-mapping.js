@@ -24,8 +24,8 @@
  * bound.
  **/
 const coordScaling = (coords, {min, max}) => {
-  const mappedCoords = coords.map(({lon, lat}) => {
-    return {lon: 180 + lon, lat: (lat - 90) * -2};
+  const mappedCoords = coords.map(({coords: {lat, lon}, ...data}) => {
+    return {...data, lon: 180 + lon, lat: (lat - 90) * -2};
   });
   const longitudes = mappedCoords.reduce((list, {lon}) => list.concat(lon), []);
   const latitudes = mappedCoords.reduce((list, {lat}) => list.concat(lat), []);
@@ -39,8 +39,8 @@ const coordScaling = (coords, {min, max}) => {
     .domain([Math.min(...latitudes), Math.max(...latitudes)])
     .range([min + max * 0.1, max - max * 0.1]);
 
-  return mappedCoords.map(({lon, lat}) => {
-    return {x: scaleLon(lon), y: scaleLat(lat)};
+  return mappedCoords.map(data => {
+    return {...data, x: scaleLon(data.lon), y: scaleLat(data.lat)};
   });
 };
 

@@ -4,6 +4,7 @@ import {linksBuilder} from './data-mapping.js';
  * Build a graph from given nodes.
  **/
 const graph = (vis, nodes) => {
+  console.debug('nodes', nodes);
   const g = vis.selectAll('circle.node').data(nodes);
   g.enter()
     .append('circle')
@@ -11,7 +12,9 @@ const graph = (vis, nodes) => {
     .attr('class', 'node')
     .attr('cx', ({x}) => x)
     .attr('cy', ({y}) => y)
-    .attr('r', '.75rem');
+    .attr('r', '.75rem')
+    .append('title')
+    .text(d => d.name);
   g.exit().remove();
 
   const l = vis.selectAll('line.link').data(linksBuilder(nodes));
