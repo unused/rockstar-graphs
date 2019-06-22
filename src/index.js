@@ -28,7 +28,7 @@ vis.attr('viewBox', '0 0 1000 1000');
  * this limits in order to ensure a scalable graph.
  **/
 const histogram = d3.select('#histogram').append('svg');
-histogram.attr('viewBox', '0 0 500 100');
+histogram.attr('viewBox', '0 0 1000 100');
 
 const switchArtist = artist => {
   dataFetch(artist, data => {

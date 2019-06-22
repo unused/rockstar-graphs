@@ -1,10 +1,13 @@
+import handleSliderControl from './slide-controls';
+
 /**
  * Draws a histogram
  **/
 const drawHistogram = (histogram, data) => {
-  const width = 475; // viewbox width is 500, keep some space for y-axis text
+  const width = 950; // viewbox width is 500, keep some space for y-axis text
   const height = 75; // viewbox height is 100, keep some space for x-axis text
   const numberBins = 100;
+  const margin = (1000 - width) / 2;
 
   const x = d3
     .scaleLinear()
@@ -23,7 +26,7 @@ const drawHistogram = (histogram, data) => {
   histogram
     .append('g')
     .attr('class', 'text')
-    .attr('transform', 'translate(20, 80)')
+    .attr('transform', `translate(${margin}, ${height + 5})`)
     .call(xAxis);
 
   // Set the basic parameters for the histogram.
@@ -41,20 +44,51 @@ const drawHistogram = (histogram, data) => {
   histogram
     .append('g')
     .attr('class', 'text')
-    .attr('transform', 'translate(20, 5)')
+    .attr('transform', `translate(${margin}, 5)`)
     .call(d3.axisLeft(y).ticks(3));
 
   // Append the bar rectangles to the histogram
-  const h = histogram.selectAll('rect').data(bins);
+  const h = histogram.selectAll('rect.bars').data(bins);
   h.enter()
     .append('rect')
     .merge(h)
-    .attr('x', 1) // move to right not to overlap axis
+    .attr('y', 5) // move down not to overlap axis
+    .attr('x', margin + 1) // move to right not to overlap axis
     .attr('class', 'bars')
-    .attr('transform', d => `translate(${x(d.x0) + 20},${y(d.length) + 5})`)
+    .attr('transform', d => `translate(${x(d.x0)},${y(d.length)})`)
     .attr('width', d => x(d.x1) - x(d.x0))
     .attr('height', d => height - y(d.length));
   h.exit().remove();
+
+  /**
+   * Handle Slider Control
+   **/
+  const ts = () => new Date().getTime(); // timestamp shorthand
+  const partialWidth = Math.floor(width / 7); // minimal width partial
+  let dragInit = 0; // drag control flag
+
+  histogram.select('rect.slider').remove();
+  const slider = histogram
+    .append('rect')
+    .attr('class', 'slider')
+    .attr('x', margin + 1) // move to right not to overlap axis
+    .attr('width', width);
+  slider
+    .on('mousedown', () => (dragInit = ts()))
+    .on('mouseup', () => {
+      if (ts() - dragInit <= 300) {
+        const currentWidth = slider.attr('width');
+        slider.attr(
+          'width',
+          currentWidth >= partialWidth * 1.5
+            ? currentWidth - partialWidth
+            : width,
+        );
+      }
+      dragInit = 0;
+    })
+    .on('mouseleave', () => (dragInit = 0))
+    .on('mousemove', (_d, _i, e) => handleSliderControl(dragMove, slider));
 };
 
 export default drawHistogram;
