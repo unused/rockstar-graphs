@@ -1,7 +1,8 @@
 import * as d3 from 'd3';
 import {coordScaling} from './data-mapping.js';
 import drawGraph from './graph.js';
-import extendGraph from './extend-graph.js';
+import extendNodes from './extend-nodes.js';
+import extendEdges from './extend-edges.js';
 import drawHistogram from './histogram.js';
 import EnrichedGraph from './enriched-graph';
 import dataFetch from './data-fetch.js';
@@ -11,6 +12,25 @@ import './styles.css';
 
 let graph = new RockstarGraph();
 let enrichedGraph = new EnrichedGraph();
+
+const printEventDebug = (events, data) => {
+  const formatTs = ts => new Date(ts * 1000).toLocaleDateString();
+  const minNodes = d3.min(events, d => d.timestamp);
+  const maxNodes = d3.max(events, d => d.timestamp);
+  const minData = d3.min(data);
+  const maxData = d3.max(data);
+
+  console.debug(
+    '[Event Limits] Nodes for Concert data range from',
+    formatTs(minNodes),
+    'to',
+    formatTs(maxNodes),
+    'and for Twitter data from',
+    formatTs(minData),
+    'to',
+    formatTs(maxData),
+  );
+};
 
 /**
  * SVG Graph
@@ -32,18 +52,16 @@ histogram.attr('viewBox', '0 0 1000 100');
 
 const switchArtist = artist => {
   dataFetch(artist, data => {
-    enrichedGraph.initialize(graph.tourData[artist], data);
+    const events = graph.tourData[artist];
+    printEventDebug(events, data);
+    enrichedGraph.initialize(events, data);
 
     const coords = graph.tourData[artist].map(event => event.coords);
     const nodes = coordScaling(coords, {min: 0, max: 1000});
 
     drawGraph(vis, nodes);
-    extendGraph(
-      vis,
-      nodes,
-      enrichedGraph.enrichedNodes,
-      enrichedGraph.enrichedEdges,
-    );
+    extendNodes(vis, nodes, enrichedGraph.enrichedNodes);
+    extendEdges(vis, nodes, enrichedGraph.enrichedEdges);
 
     const max = data.length / 100;
     drawHistogram(histogram, data.sort(), ({start, range}) => {
