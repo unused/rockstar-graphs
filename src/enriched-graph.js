@@ -1,8 +1,31 @@
+import * as d3 from 'd3';
+
+const printEventDebug = (graph, data) => {
+  const formatTs = ts => new Date(ts * 1000).toLocaleDateString();
+  const minNodes = d3.min(graph, d => d.timestamp);
+  const maxNodes = d3.max(graph, d => d.timestamp);
+  const minData = d3.min(data);
+  const maxData = d3.max(data);
+
+  console.debug(
+    '[Event Limits] Nodes for Concert data range from',
+    formatTs(minNodes),
+    'to',
+    formatTs(maxNodes),
+    'and for Twitter data from',
+    formatTs(minData),
+    'to',
+    formatTs(maxData),
+  );
+};
+
 /**
  *
  **/
 class EnrichedGraph {
   initialize(graph, data) {
+    printEventDebug(graph, data);
+
     graph = graph.sort((a, b) => (a.timestamp < b.timestamp ? -1 : 1));
     data = data.sort();
 
