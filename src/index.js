@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import {BEFORE, AFTER} from './config.js';
+import {FILL_OPACITY, BEFORE, AFTER} from './config.js';
 import {coordScaling} from './data-mapping.js';
 import drawGraph from './graph.js';
 import extendNodes from './extend-nodes.js';
@@ -94,7 +94,9 @@ const switchArtist = artist => {
       vis
         .selectAll('circle.eventnodes, circle.eventedges')
         .style('fill-opacity', (_d, i) => {
-          return i >= start * max && i <= (start + range) * max ? 0.5 : 0.125;
+          return i >= start * max && i <= (start + range) * max
+            ? FILL_OPACITY
+            : 0.125;
         });
     });
   });

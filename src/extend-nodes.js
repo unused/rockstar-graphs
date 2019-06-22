@@ -1,4 +1,5 @@
 import * as d3 from 'd3';
+import {mood_scale} from './config';
 
 /**
  * Build a graph from given nodes.
@@ -21,10 +22,11 @@ const extendNodes = (vis, nodes, extNodes) => {
       .attr('r', 3)
       .attr('cx', item.x)
       .attr('cy', item.y)
-      .style('fill', '#69b3a2')
-      .style('fill-opacity', 0.5)
-      .attr('stroke', '#69a2b2')
-      .style('stroke-width', 0.1);
+      .style('fill', ({tweet: {sentiment}}) => {
+        console.debug(mood_scale(sentiment));
+        return mood_scale(sentiment);
+      })
+      .style('fill-opacity', 0.75);
 
     // Features of the forces applied to the nodes:
     let simulation = d3

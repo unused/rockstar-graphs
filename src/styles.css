@@ -39,7 +39,7 @@ svg .node { fill: GhostWhite; }
 svg .text { color: white; }
 svg .bars { fill: Cornsilk; }
 svg .event { fill: PaleGoldenRod; }
-body { background: DimGrey; }
+body { background: Black; }
 
 /* NOTE: fooling around...
 @media (prefers-color-scheme: light) {

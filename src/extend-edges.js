@@ -15,17 +15,13 @@ const extendEdges = (vis, nodes, extEdges) => {
     let scaleX = d3
       .scaleLinear()
       .domain([
-        d3.min(extEdges[index], function(d) {
-          return d.event;
-        }),
-        d3.max(extEdges[index], function(d) {
-          return d.event;
-        }),
+        d3.min(extEdges[index], ({tweet: {ts}}) => ts),
+        d3.max(extEdges[index], ({tweet: {ts}}) => ts),
       ])
       .range([item.source.x, item.target.x]);
 
-    extEdges[index].forEach(function(event, eventIndex, eventArray) {
-      let x = scaleX(event.event);
+    extEdges[index].forEach(function({tweet: {ts}}, eventIndex, eventArray) {
+      let x = scaleX(ts);
       let y =
         item.source.y +
         ((item.target.y - item.source.y) / (item.target.x - item.source.x)) *

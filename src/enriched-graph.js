@@ -19,14 +19,16 @@ class EnrichedGraph {
     }
 
     graph.forEach(function(item, i, grapharray) {
-      tweets.forEach(function({ts}, j, eventarray) {
+      tweets.forEach(function(tweet, j, eventarray) {
+        const {ts} = tweet;
+
         // Event is part of the concert
         if (item.timestamp - BEFORE <= ts && item.timestamp + AFTER > ts) {
-          nodes[i].push({event: ts});
+          nodes[i].push({tweet});
         }
         //Event is between two concerts
         if (item.timestamp + AFTER <= ts && grapharray[i + 1].timestamp > ts) {
-          edges[i].push({event: ts});
+          edges[i].push({tweet});
         }
       });
     });
