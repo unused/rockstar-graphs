@@ -60,35 +60,9 @@ const drawHistogram = (histogram, data) => {
     .attr('height', d => height - y(d.length));
   h.exit().remove();
 
-  /**
-   * Handle Slider Control
-   **/
-  const ts = () => new Date().getTime(); // timestamp shorthand
-  const partialWidth = Math.floor(width / 7); // minimal width partial
-  let dragInit = 0; // drag control flag
-
-  histogram.select('rect.slider').remove();
-  const slider = histogram
-    .append('rect')
-    .attr('class', 'slider')
-    .attr('x', margin + 1) // move to right not to overlap axis
-    .attr('width', width);
-  slider
-    .on('mousedown', () => (dragInit = ts()))
-    .on('mouseup', () => {
-      if (ts() - dragInit <= 300) {
-        const currentWidth = slider.attr('width');
-        slider.attr(
-          'width',
-          currentWidth >= partialWidth * 1.5
-            ? currentWidth - partialWidth
-            : width,
-        );
-      }
-      dragInit = 0;
-    })
-    .on('mouseleave', () => (dragInit = 0))
-    .on('mousemove', (_d, _i, e) => handleSliderControl(dragMove, slider));
+  handleSliderControl(histogram, h, {margin, width}, ({start, range}) =>
+    console.debug('slider update', {start, range}),
+  );
 };
 
 export default drawHistogram;
