@@ -1,7 +1,7 @@
 
 # gotwt
 
-Twitter crawler.
+A Twitter crawler written in go.
 
 ## Usage
 

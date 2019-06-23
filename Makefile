@@ -7,4 +7,7 @@ build:
 deploy:
 	$(CMD) run deploy
 
-.PHONY: build deploy
+report:
+	pandoc -o project-report{.pdf,.md}
+
+.PHONY: build deploy report
