@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/unused/rockstar-graphs#readme",
   "dependencies": {
-    "d3": "^5.9.2"
+    "d3": "^7.6.1"
   },
   "devDependencies": {
     "css-loader": "^3.0.0",
